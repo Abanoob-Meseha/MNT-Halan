@@ -5,17 +5,31 @@ const INITIAL_DATA = {
         { id: 2, username: 'user', password: '123', name: 'Normal User', role: 'user', permissions: ['view_content'] }
     ],
     categories: [
-        { id: 'micro', title: 'تمويل متناهي الصغر', icon: 'fa-coins' },
-        { id: 'medium', title: 'تمويل متوسط', icon: 'fa-chart-line' },
-        { id: 'auto', title: 'تمويل السيارات', icon: 'fa-car' },
-        { id: 'consumer', title: 'التمويل الاستهلاكي', icon: 'fa-shopping-cart' },
-        { id: 'investment', title: 'الاستثمار', icon: 'fa-piggy-bank' },
-        { id: 'gam3ya', title: 'الجمعية', icon: 'fa-users' }
+        { id: 'micro', title: 'تمويل متناهي الصغر', icon: 'fa-coins', viewType: 'grid' },
+        { id: 'medium', title: 'تمويل متوسط', icon: 'fa-chart-line', viewType: 'tabs' },
+        { id: 'auto', title: 'تمويل السيارات', icon: 'fa-car', viewType: 'tabs' },
+        { id: 'consumer', title: 'التمويل الاستهلاكي', icon: 'fa-shopping-cart', viewType: 'tabs' },
+        { id: 'investment', title: 'الاستثمار', icon: 'fa-piggy-bank', viewType: 'tabs' },
+        { id: 'gam3ya', title: 'الجمعية', icon: 'fa-users', viewType: 'tabs' },
+        { id: 'employee', title: 'التمويل للموظفين', icon: 'fa-user-tie', viewType: 'tabs' }
     ],
     content: {
         'micro': [
-            { id: 'tab1', title: 'نظرة عامة', html: '<h3>نظرة عامة على التمويل متناهي الصغر</h3><p>هنا يمكنك كتابة تفاصيل عن التمويل...</p>' },
-            { id: 'tab2', title: 'الشروط', html: '<h3>شروط التقديم</h3><ul><li>شرط 1</li><li>شرط 2</li></ul>' }
+            { id: 'cond', title: 'الاشتراطات العامة', icon: 'fa-file-contract', html: '<h3>الاشتراطات العامة</h3><p>تفاصيل...</p>' },
+            { id: 'guarantee', title: 'سياسة الضمانات', icon: 'fa-shield-alt', html: '<h3>سياسة الضمانات</h3><p>تفاصيل...</p>' },
+            { id: 'renewal', title: 'التجديد', icon: 'fa-sync', html: '<h3>التجديد</h3><p>تفاصيل...</p>' },
+            { id: 'craft', title: 'القرض الحرفي', icon: 'fa-tools', html: '<h3>القرض الحرفي</h3><p>تفاصيل...</p>' },
+            { id: 'seasonal', title: 'القرض الموسمي', icon: 'fa-cloud-sun', html: '<h3>القرض الموسمي</h3><p>تفاصيل...</p>' },
+            { id: 'boat', title: 'تمويل مراكب الصيد', icon: 'fa-ship', html: '<h3>تمويل مراكب الصيد</h3><p>تفاصيل...</p>' },
+            { id: 'overhaul', title: 'عمرة السيارات و التوكتوك', icon: 'fa-wrench', html: '<h3>عمرة السيارات</h3><p>تفاصيل...</p>' },
+            { id: 'iscore', title: 'الأي سكور', icon: 'fa-chart-bar', html: '<h3>الأي سكور</h3><p>تفاصيل...</p>' },
+            { id: 'guarantor', title: 'اقتراض الضامن', icon: 'fa-user-friends', html: '<h3>اقتراض الضامن</h3><p>تفاصيل...</p>' },
+            { id: 'independent', title: 'القرض المستقل', icon: 'fa-user', html: '<h3>القرض المستقل</h3><p>تفاصيل...</p>' },
+            { id: 'express', title: 'الاكسبريس', icon: 'fa-tachometer-alt', html: '<h3>الاكسبريس</h3><p>تفاصيل...</p>' },
+            { id: 'transfers', title: 'التحويلات الداخلية و الخارجية', icon: 'fa-exchange-alt', html: '<h3>التحويلات</h3><p>تفاصيل...</p>' },
+            { id: 'posting', title: 'الترحيلات', icon: 'fa-share-square', html: '<h3>الترحيلات</h3><p>تفاصيل...</p>' },
+            { id: 'scheduling', title: 'الجدولة', icon: 'fa-calendar-alt', html: '<h3>الجدولة</h3><p>تفاصيل...</p>' },
+            { id: 'legal', title: 'الشئون القانونية', icon: 'fa-balance-scale', html: '<h3>الشئون القانونية</h3><p>تفاصيل...</p>' }
         ],
         'medium': [
             { id: 'tab1', title: 'نظرة عامة', html: '<h3>تمويل المشروعات المتوسطة</h3><p>دعم لنمو أعمالك...</p>' }
@@ -32,21 +46,32 @@ const INITIAL_DATA = {
         ],
         'gam3ya': [
             { id: 'tab1', title: 'كيف تعمل', html: '<h3>طريقة الاشتراك</h3><p>خطوات بسيطة...</p>' }
+        ],
+        'employee': [
+            { id: 'tab1', title: 'المميزات', html: '<h3>مميزات تمويل الموظفين</h3><p>أقل فائدة وأسهل إجراءات...</p>' },
+            { id: 'tab2', title: 'المستندات المطلوبة', html: '<h3>الأوراق المطلوبة</h3><p>صورة البطاقة، مفردات مرتب...</p>' }
         ]
     }
 };
 
 function initData() {
-    if (!localStorage.getItem('mnt_users')) {
+    // We need to force update for this step to apply new data structure to existing localStorage
+    // In a real app we'd have migrations. Here we'll just check if the new category exists, if not, reset/merge.
+    // For simplicity in this demo, let's just Refresh the data if 'employee' is missing or 'micro' has no icons.
+
+    const cats = JSON.parse(localStorage.getItem('mnt_categories') || '[]');
+    const needsUpdate = !cats.find(c => c.id === 'employee');
+
+    if (needsUpdate || !localStorage.getItem('mnt_users')) {
         localStorage.setItem('mnt_users', JSON.stringify(INITIAL_DATA.users));
-    }
-    if (!localStorage.getItem('mnt_categories')) {
         localStorage.setItem('mnt_categories', JSON.stringify(INITIAL_DATA.categories));
-    }
-    if (!localStorage.getItem('mnt_content')) {
+
+        // Merge content to keep old edits if any, but in this specific request we want the new structure for Micro
+        // Best safest bet for MVP demo: overwrite content for 'micro' and 'employee', keep others if possible, 
+        // OR just reset everything. Resetting is safer to ensure new structure works.
         localStorage.setItem('mnt_content', JSON.stringify(INITIAL_DATA.content));
+        console.log('Data reset/updated for new features');
     }
-    console.log('Data initialized');
 }
 
 // Auto-run init on load

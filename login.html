@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,16 +14,19 @@
             height: 100vh;
             background: linear-gradient(135deg, var(--bg-color) 0%, #e0e7ff 100%);
         }
+
         .login-card {
             width: 100%;
             max-width: 400px;
             padding: 40px;
             text-align: center;
         }
+
         .logo {
             width: 150px;
             margin-bottom: 20px;
         }
+
         .error-msg {
             color: red;
             margin-bottom: 10px;
@@ -31,6 +34,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="card login-card">
@@ -47,7 +51,7 @@
             <button type="submit" class="btn btn-primary w-full">دخول</button>
         </form>
         <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
-            جرب: admin / 123 
+            جرب: Bola.Adel / 123
         </p>
     </div>
 
@@ -59,14 +63,14 @@
 
         // Check if already logged in
         if (localStorage.getItem('mnt_current_user')) {
-             window.location.href = 'dashboard.html';
+            window.location.href = 'dashboard.html';
         }
 
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+        document.getElementById('login-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            
+
             const result = App.login(username, password);
             if (!result.success) {
                 const errorDiv = document.getElementById('error-msg');
@@ -76,4 +80,5 @@
         });
     </script>
 </body>
+
 </html>

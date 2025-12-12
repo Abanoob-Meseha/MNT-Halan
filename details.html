@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل - MNT Halan Ma3lomaty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .header {
+            background: #fff;
+            height: var(--header-height);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Tabs Styles */
+        .tabs-wrapper {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .tabs-header {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 20px 30px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: #eee;
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: #fff;
+        }
+
+        .content-body {
+            padding: 40px;
+            min-height: 400px;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="flex items-center gap-4">
+            <img src="images/logo.png" alt="MNT Halan" style="height: 40px;">
+            <h1 style="font-size: 1.2rem; color: #555;">بوابة المعلومات</h1>
+        </div>
+        <div class="user-menu">
+            <span>مرحباً، <strong id="user-name">...</strong></span>
+            <a href="#" id="logout-btn" class="btn btn-primary" style="padding: 5px 15px; font-size: 0.9rem;">خروج</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <a href="dashboard.html" class="back-link">
+            <i class="fas fa-arrow-right"></i>
+            حودة للقائمة الرئيسية
+        </a>
+
+        <h2 id="page-title" style="margin-bottom: 20px; font-size: 2rem; color: var(--primary-color);">...</h2>
+
+        <div class="tabs-wrapper">
+            <div id="tabs-container" class="tabs-header">
+                <!-- Tabs injected here -->
+            </div>
+
+            <div class="content-body">
+                <div class="content-header">
+                    <h3>المحتوى</h3>
+                    <div id="actions-area">
+                        <!-- Edit Button injected here -->
+                    </div>
+                </div>
+
+                <div id="content-area">
+                    <!-- HTML Content injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/details.js"></script>
+</body>
+
+</html>
